@@ -1,0 +1,12 @@
+{
+  "name": "money-tracker",
+  "version": "1.0.0",
+  "description": "Money Tracker with hierarchical categories and trends",
+  "scripts": {
+    "start": "./start.sh",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "migrate": "cd server && npm run migrate",
+    "install-all": "cd server && npm install && cd ../client && npm install"
+  }
+}
