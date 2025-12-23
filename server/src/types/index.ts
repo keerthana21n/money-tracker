@@ -16,6 +16,7 @@ export interface Transaction {
   description: string;
   category_id: number;
   date: string;
+  payment_method: string;
   created_at: string;
 }
 
@@ -34,4 +35,31 @@ export interface CategoryTrend {
   category_name: string;
   total_amount: number;
   trends: TrendData[];
+}
+
+export interface CategorySummary {
+  id: number;
+  name: string;
+  color: string;
+  total_amount: number;
+  transaction_count: number;
+}
+
+export interface RecurringTransaction {
+  id: number;
+  amount: number;
+  description: string;
+  category_id: number;
+  payment_method: string;
+  frequency: 'daily' | 'weekly' | 'monthly' | 'yearly';
+  start_date: string;
+  end_date: string | null;
+  next_due_date: string;
+  is_active: number;
+  created_at: string;
+}
+
+export interface RecurringTransactionWithCategory extends RecurringTransaction {
+  category_name: string;
+  category_color: string;
 }

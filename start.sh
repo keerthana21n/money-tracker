@@ -4,24 +4,24 @@ echo "🚀 Starting Money Tracker Application..."
 echo ""
 
 # Start backend server
-echo "📦 Starting Backend Server on port 5000..."
+echo "📦 Starting Backend Server on port 5001..."
 cd server
-npm run dev &
+PORT=5001 npm run dev &
 BACKEND_PID=$!
 
 # Wait a bit for backend to start
 sleep 3
 
 # Start frontend
-echo "🎨 Starting Frontend on port 3000..."
+echo "🎨 Starting Frontend on port 3002..."
 cd ../client
-npm start &
+PORT=3002 npm start &
 FRONTEND_PID=$!
 
 echo ""
 echo "✅ Application Started!"
-echo "   Backend:  http://localhost:5000"
-echo "   Frontend: http://localhost:3000"
+echo "   Backend:  http://localhost:5001"
+echo "   Frontend: http://localhost:3002"
 echo ""
 echo "Press Ctrl+C to stop both servers"
 

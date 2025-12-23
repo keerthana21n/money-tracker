@@ -18,6 +18,14 @@ import {
   getAllCategoriesTrends,
   getCategorySpendingSummary
 } from '../controllers/trendsController';
+import {
+  getAllRecurringTransactions,
+  getRecurringTransactionById,
+  createRecurringTransaction,
+  updateRecurringTransaction,
+  deleteRecurringTransaction,
+  processRecurringTransactions
+} from '../controllers/recurringTransactionController';
 
 const router = Router();
 
@@ -34,6 +42,14 @@ router.get('/transactions/:id', getTransactionById);
 router.post('/transactions', createTransaction);
 router.put('/transactions/:id', updateTransaction);
 router.delete('/transactions/:id', deleteTransaction);
+
+// Recurring transaction routes
+router.get('/recurring-transactions', getAllRecurringTransactions);
+router.get('/recurring-transactions/:id', getRecurringTransactionById);
+router.post('/recurring-transactions', createRecurringTransaction);
+router.put('/recurring-transactions/:id', updateRecurringTransaction);
+router.delete('/recurring-transactions/:id', deleteRecurringTransaction);
+router.post('/recurring-transactions/process', processRecurringTransactions);
 
 // Trends routes
 router.get('/trends/category', getCategoryTrends);

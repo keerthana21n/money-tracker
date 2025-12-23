@@ -63,15 +63,15 @@ export const getTransactionById = async (req: Request, res: Response) => {
 
 export const createTransaction = async (req: Request, res: Response) => {
   try {
-    const { amount, description, category_id, date } = req.body;
-    
+    const { amount, description, category_id, date, payment_method } = req.body;
+
     if (!amount || !category_id || !date) {
       return res.status(400).json({ error: 'Amount, category_id, and date are required' });
     }
 
     await runQuery(
-      'INSERT INTO transactions (amount, description, category_id, date) VALUES (?, ?, ?, ?)',
-      [amount, description || '', category_id, date]
+      'INSERT INTO transactions (amount, description, category_id, date, payment_method) VALUES (?, ?, ?, ?, ?)',
+      [amount, description || '', category_id, date, payment_method || 'Savings Bank']
     );
 
     res.status(201).json({ message: 'Transaction created successfully' });
@@ -83,11 +83,11 @@ export const createTransaction = async (req: Request, res: Response) => {
 export const updateTransaction = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { amount, description, category_id, date } = req.body;
+    const { amount, description, category_id, date, payment_method } = req.body;
 
     await runQuery(
-      'UPDATE transactions SET amount = ?, description = ?, category_id = ?, date = ? WHERE id = ?',
-      [amount, description, category_id, date, id]
+      'UPDATE transactions SET amount = ?, description = ?, category_id = ?, date = ?, payment_method = ? WHERE id = ?',
+      [amount, description, category_id, date, payment_method || 'Savings Bank', id]
     );
 
     res.json({ message: 'Transaction updated successfully' });
